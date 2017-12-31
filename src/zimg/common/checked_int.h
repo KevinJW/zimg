@@ -432,7 +432,7 @@ T _checked_integer_cast(const U &value, std::false_type, std::false_type)
 {
 	typedef typename std::common_type<T, U>::type common_type;
 
-	// coverity[result_independent_of_operands]
+	// coverity[CONSTANT_EXPRESSION_RESULT]
 	if (common_type(value) > common_type(std::numeric_limits<T>::max()))
 		_checked_arithmetic_throw();
 	return static_cast<T>(value);
@@ -444,7 +444,7 @@ T _checked_integer_cast(const U &value, std::false_type, std::true_type)
 {
 	typedef typename std::common_type<T, U>::type common_type;
 
-	// coverity[result_independent_of_operands]
+	// coverity[CONSTANT_EXPRESSION_RESULT]
 	if (value < U() || common_type(value) > common_type(std::numeric_limits<T>::max()))
 		_checked_arithmetic_throw();
 	return static_cast<T>(value);
@@ -456,7 +456,7 @@ T _checked_integer_cast(const U &value, std::true_type, std::false_type)
 {
 	typedef typename std::common_type<T, U>::type common_type;
 
-	// coverity[result_independent_of_operands]
+	// coverity[CONSTANT_EXPRESSION_RESULT]
 	if (common_type(value) > common_type(std::numeric_limits<T>::max()))
 		_checked_arithmetic_throw();
 	return static_cast<T>(value);
@@ -468,7 +468,7 @@ T _checked_integer_cast(const U &value, std::true_type, std::true_type)
 {
 	typedef typename std::common_type<T, U>::type common_type;
 
-	// coverity[result_independent_of_operands]
+	// coverity[CONSTANT_EXPRESSION_RESULT]
 	if (common_type(value) < common_type(std::numeric_limits<T>::min()) ||
 	    common_type(value) > common_type(std::numeric_limits<T>::max()))
 	{
